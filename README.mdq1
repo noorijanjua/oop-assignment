@@ -53,7 +53,7 @@ private:
 
 int main() {
     Course math("Math");
-    math.addStudent("Ali");
+    math.addStudent("Noor");
     math.addStudent("Ana");
     math.addStudent("Sara");
     Course copyMath = math;
