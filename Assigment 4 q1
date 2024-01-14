@@ -41,3 +41,50 @@ int main() {
 
     return 0;
 }
+q2
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+class Product {
+public:
+    int id;
+    string name;
+    // Add other relevant product details
+    Product(int _id, const string& _name) : id(_id), name(_name) {}
+};
+class Inventory {
+private:
+    vector<Product> products;
+public:
+    void addProduct(const Product& product) {
+        products.push_back(product);
+    }
+    void removeProduct(int productId) {
+        auto it = remove_if(products.begin(), products.end(),
+                            [productId](const Product& p) { return p.id == productId; });
+        products.erase(it, products.end());
+    }
+    void displayInventory() {
+        for (const auto& product : products) {
+            cout << "ID: " << product.id << ", Name: " << product.name << endl;
+        }
+    }
+};
+int main() {
+    // Example Usage
+    Inventory inventory;
+    // Adding products
+    Product p1(1, "Product 1");
+    Product p2(2, "Product 2");
+    inventory.addProduct(p1);
+    inventory.addProduct(p2);
+    cout << "Inventory before removal:\n";
+    inventory.displayInventory();
+    // Removing product by ID
+    int productIdToRemove = 1;
+    inventory.removeProduct(productIdToRemove);
+    cout << "\nInventory after removal:\n";
+    inventory.displayInventory();
+    return 0;
+}
