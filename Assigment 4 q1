@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+using namespace std;
+int main() {
+    const int size = 100000;
+    vector<int> data(size);
+
+    // Initialize vector in descending order
+    for (int i = size - 1; i >= 0; --i) {
+        data[i] = i;
+    }
+
+    // Measure time for Bubble Sort
+    auto bubbleSortStart = chrono::high_resolution_clock::now();
+    // Implement Bubble Sort algorithm here
+    auto bubbleSortEnd = chrono::high_resolution_clock::now();
+    chrono::duration<double> bubbleSortTime = bubbleSortEnd - bubbleSortStart;
+
+    // Measure time for STL sort
+    auto stlSortStart = chrono::high_resolution_clock::now();
+    sort(data.begin(), data.end());
+    auto stlSortEnd = chrono::high_resolution_clock::now();
+    chrono::duration<double> stlSortTime = stlSortEnd - stlSortStart;
+
+    // Print execution time
+    cout << "Bubble Sort Execution Time: " << bubbleSortTime.count() << " seconds\n";
+    cout << "STL Sort Execution Time: " << stlSortTime.count() << " seconds\n";
+
+    // Print first 10 and last 10 integers
+    cout << "First 10 integers: ";
+    for (int i = 0; i < 10; ++i) {
+        cout << data[i] << " ";
+    }
+
+    cout << "\nLast 10 integers: ";
+    for (int i = size - 10; i < size; ++i) {
+        cout << data[i] << " ";
+    }
+
+    return 0;
+}
